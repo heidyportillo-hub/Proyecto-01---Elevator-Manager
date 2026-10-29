@@ -1,22 +1,25 @@
 package manager;
 import java.util.ArrayList;
+import elevator.Elevator;
 
-public class ElevadorManager extends Thread{
-  ArrayList<Integer> peticiones = new ArrayList<>(); 
+public class ElevatorManager extends Thread{
+  private ArrayList<Elevator> elevadores = new ArrayList<>(); 
   
   private int totalNiveles;
-  private int codigo;
   private int tiempoNiveles;
   private int tiempoEspera;
+  private int cantElevadores;
 
-  public ElevadorManager(int totalNiveles, int codigo, int tiempoNiveles, int tiempoEspera){
+  public ElevatorManager(int totalNiveles, int tiempoNiveles, int tiempoEspera, int cantElevadores){
     this.totalNiveles = totalNiveles;
-    this.codigo = codigo;
     this.tiempoNiveles = tiempoNiveles;
     this.tiempoEspera = tiempoEspera;
+    this.cantElevadores = cantElevadores;
     
-    Elevador(codigo, totalNiveles, tiempoNiveles, tiempoEspera);
-    
-    
+    for(int codigo=1; codigo<cantElevadores+1; codigo++){
+      Elevator elevador = new Elevator(codigo, totalNiveles, tiempoNiveles, tiempoEspera);
+      elevador.start();
+      elevadores.add(elevador);
+    }
   }
 }
