@@ -1,6 +1,7 @@
 package manager;
 import java.util.ArrayList;
 import elevator.Elevator;
+import java.util.concurrent.LinkedBlockingQueue
 
 public class ElevatorManager extends Thread{
   private ArrayList<Elevator> elevadores = new ArrayList<>(); 
@@ -20,6 +21,8 @@ public class ElevatorManager extends Thread{
       Elevator elevador = new Elevator(codigo, totalNiveles, tiempoNiveles, tiempoEspera);
       elevador.start();
       elevadores.add(elevador);
-    }
+    } 
   }
+  private LinkedBlockingQueue<Peticion> peticiones = new LinkedBlockingQueue<>();
+  
 }
