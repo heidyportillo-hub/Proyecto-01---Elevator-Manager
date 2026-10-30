@@ -24,8 +24,12 @@ public class ElevatorManager extends Thread{
     } 
   }
   private ConcurrentLinkedQueue<Peticion> peticiones = new LinkedBlockingQueue<>();
-  public Peticion recibirPeticion(int piso, int sentido){
-    
+  public void recibirPeticion(int piso, int sentido){
+    if(1<piso && piso <totalNiveles && sentido == 1 || sentido == 2){
+        Peticion 
+    }else{
+        return;
+    }
   }
   
 }
