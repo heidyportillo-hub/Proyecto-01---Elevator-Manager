@@ -25,7 +25,7 @@ public class ElevatorManager extends Thread{
   }
   private ConcurrentLinkedQueue<Peticion> peticiones = new ConcurrentLinkedQueue<>();
   public void recibirPeticion(int piso, int sentido){
-    if((1<piso && piso <totalNiveles) && (sentido == 1 || sentido == 2)){
+    if((1<=piso && piso <=totalNiveles) && (sentido == 1 || sentido == 2)){
       Peticion peticion = new Peticion(piso, sentido);
       peticiones.add(peticion);
     }
