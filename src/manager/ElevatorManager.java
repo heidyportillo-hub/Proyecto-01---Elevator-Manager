@@ -23,13 +23,25 @@ public class ElevatorManager extends Thread{
       elevadores.add(elevador);
     } 
   }
-  private ConcurrentLinkedQueue<Peticion> peticiones = new LinkedBlockingQueue<>();
+  private ConcurrentLinkedQueue<Peticion> peticiones = new ConcurrentLinkedQueue<>();
   public void recibirPeticion(int piso, int sentido){
-    if(1<piso && piso <totalNiveles && sentido == 1 || sentido == 2){
-        Peticion 
-    }else{
-        return;
+    if((1<piso && piso <totalNiveles) && (sentido == 1 || sentido == 2)){
+      Peticion peticion = new Peticion(piso, sentido);
+      peticiones.add(peticion);
     }
+  }
+  boolean activo = true;
+  public void cambioActivo(){
+    if(peticiones.isEmpty()){
+      activo = false;
+    }
+  }
+  while(activo){
+    Peticion activa = peticion.poll(); //la peticion que se va a seguir
+    if(activa == null){
+      Thread.Sleep(100);
+    }else{
+      System.out.println("Piso: " + piso + " Sentido: " + sentido);
   }
   
 }
